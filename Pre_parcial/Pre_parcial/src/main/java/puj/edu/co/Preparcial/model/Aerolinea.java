@@ -36,7 +36,7 @@ public class Aerolinea implements Serializable {
         if(buscar_vuelo(numero_vuelo) != null){
             ArrayList<Pasajero> pasajeros_arr = buscar_vuelo(numero_vuelo).getPasajeros();
             for(Pasajero pasajero : pasajeros_arr){
-                if(pasajero.getNombre().equals(nombre)){
+                if(pasajero.getNombre().equals(nombre) && pasajero.getInd() == id){
                     throw new Pasajero_Existente();
                 }
             }
@@ -66,11 +66,11 @@ public class Aerolinea implements Serializable {
 
     public void generar_reporte(String origen){
         String archivo = "vuelos_origen.txt";
-        for(Vuelo vuelo : vuelos){
-            if(vuelo.getOrigen().equalsIgnoreCase(origen)){
-                if(vuelo instanceof Nacional) {
-                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
-                    Nacional n = (Nacional) vuelo;
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            for(Vuelo vuelo : vuelos){
+                if(vuelo.getOrigen().equalsIgnoreCase(origen)){
+                    if(vuelo instanceof Nacional) {
+                        Nacional n = (Nacional) vuelo;
                         writer.write("Nacional" + "-");
                         writer.write(this.nombre + "-");
                         writer.write(n.getNumero_vuelo() + "-");
@@ -79,34 +79,26 @@ public class Aerolinea implements Serializable {
                         writer.write(n.getFecha_inicial() + "-");
                         writer.write(n.getFecha_final() + "-");
                         writer.write(n.getValor() + "-");
-                        writer.write(n.getTipo_aeropuerto() +"\n");
-                        System.out.println("Vuelos guardados como texto en " + archivo);
-                    } catch (IOException e) {
-                        System.out.println("Error al escribir en texto: " + e.getMessage());
-                    }
-                }
-                else{
-                    Internacional I = (Internacional) vuelo;
-                    try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+                        writer.write(n.getTipo_aeropuerto() + "\n");
+                    } else {
+                        Internacional I = (Internacional) vuelo;
                         writer.write("Internacional" + "-");
                         writer.write(this.nombre + "-");
                         writer.write(I.getNumero_vuelo() + "-");
                         writer.write(I.getOrigen() + "-");
                         writer.write(I.getDestino() + "-");
                         writer.write(I.getFecha_inicial() + "-");
-                        writer.write(I.getFecha_inicial() + "-");
+                        writer.write(I.getFecha_final() + "-");
                         writer.write(I.getValor() + "-");
-                        writer.write(I.getImpuesto() +"\n");
-                        System.out.println("Vuelos guardados como texto en " + archivo);
-                    } catch (IOException e) {
-                        System.out.println("Error al escribir en texto: " + e.getMessage());
+                        writer.write(I.getImpuesto() + "\n");
                     }
+                    System.out.println("Vuelos guardados como texto en " + archivo);
                 }
             }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en texto: " + e.getMessage());
         }
     }
-
-
 
 }
 

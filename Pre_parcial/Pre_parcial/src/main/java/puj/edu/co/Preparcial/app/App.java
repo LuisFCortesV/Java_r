@@ -13,6 +13,7 @@ public class App
     public static void main( String[] args )
     {
         App app = new App();
+        app.aerolinea = new Aerolinea("Avianca");
         app.guardar_aerolinea();
     }
 

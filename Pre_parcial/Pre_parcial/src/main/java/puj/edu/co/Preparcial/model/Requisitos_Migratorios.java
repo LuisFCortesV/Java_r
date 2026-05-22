@@ -3,8 +3,11 @@ package puj.edu.co.Preparcial.model;
 public class Requisitos_Migratorios {
     private String descripcion;
 
-
-// GETTER AND SETTERS
+    public Requisitos_Migratorios(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    // GETTER AND SETTERS
 
 
     public String getDescripcion() {
