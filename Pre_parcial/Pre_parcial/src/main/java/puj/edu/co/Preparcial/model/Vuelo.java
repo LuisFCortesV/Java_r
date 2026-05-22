@@ -13,14 +13,14 @@ public abstract class Vuelo {
 
     private ArrayList<Pasajero> pasajeros;
 
-    public Vuelo(String origen, String destino, LocalDate fecha_inicial, LocalDate fecha_final, int numero_vuelo, int valor, ArrayList<Pasajero> pasajeros) {
+    public Vuelo(String origen, String destino, LocalDate fecha_inicial, LocalDate fecha_final, int numero_vuelo, int valor) {
         this.origen = origen;
         this.destino = destino;
         this.fecha_inicial = fecha_inicial;
         this.fecha_final = fecha_final;
         this.numero_vuelo = numero_vuelo;
         this.valor = valor;
-        this.pasajeros = pasajeros;
+        this.pasajeros = new ArrayList<>();
     }
 
     // Metodos

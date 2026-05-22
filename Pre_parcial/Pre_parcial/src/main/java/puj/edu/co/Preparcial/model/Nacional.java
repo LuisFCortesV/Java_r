@@ -9,8 +9,8 @@ public class Nacional extends Vuelo{
 
     private String tipo_aeropuerto;
 
-    public Nacional(String tipo_aeropuerto, String origen, String destino, LocalDate fecha_inicial, LocalDate fecha_final, int numero_vuelo, int valor, ArrayList<Pasajero> pasajeros) {
-        super(origen,destino,fecha_inicial,fecha_final,numero_vuelo,valor,pasajeros);
+    public Nacional(String tipo_aeropuerto, String origen, String destino, LocalDate fecha_inicial, LocalDate fecha_final, int numero_vuelo, int valor) {
+        super(origen,destino,fecha_inicial,fecha_final,numero_vuelo,valor);
         this.tipo_aeropuerto = tipo_aeropuerto;
     }
 
@@ -34,5 +34,14 @@ public class Nacional extends Vuelo{
     }
 
 
+    // GETTER AND SETTER
 
+
+    public String getTipo_aeropuerto() {
+        return tipo_aeropuerto;
+    }
+
+    public void setTipo_aeropuerto(String tipo_aeropuerto) {
+        this.tipo_aeropuerto = tipo_aeropuerto;
+    }
 }
